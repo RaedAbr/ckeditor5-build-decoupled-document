@@ -97,5 +97,8 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-upload": "^19.0.0"
   }
 }
