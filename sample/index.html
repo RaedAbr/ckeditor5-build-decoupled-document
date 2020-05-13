@@ -18,6 +18,7 @@
 <div class="toolbar-container"></div>
 
 <h2>The editable</h2>
+<button onclick="logData()">Log getData()</button>
 <div class="editable-container"></div>
 
 <style>
@@ -67,6 +68,10 @@
 		.catch( error => {
 			console.error( 'There was a problem initializing the editor.', error );
 		} );
+
+	function logData() {
+		console.log(window.editor.getData());
+	}
 </script>
 
 </body>
