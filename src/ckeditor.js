@@ -39,7 +39,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 
 // new plugins
-import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
+import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
 
 export default class DecoupledEditor extends DecoupledEditorBase {}
 
@@ -76,7 +76,8 @@ DecoupledEditor.builtinPlugins = [
 	Table,
 	TableToolbar,
 	TextTransformation,
-	Base64UploadAdapter // new plugins
+	// new plugins
+	ImageResize
 ];
 
 // Editor configuration.
@@ -122,9 +123,7 @@ DecoupledEditor.defaultConfig = {
 		toolbar: [
 			'imageStyle:alignLeft',
 			'imageStyle:full',
-			'imageStyle:alignRight',
-			'|',
-			'imageTextAlternative'
+			'imageStyle:alignRight'
 		]
 	},
 	table: {
