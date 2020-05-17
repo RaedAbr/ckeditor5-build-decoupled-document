@@ -53,16 +53,18 @@ export default class NewDocumentPlugin extends Plugin {
 
 			// Callback executed once the button is clicked.
 			view.on( 'execute', () => {
-				if ( this.action ) {
-					this.buildBlob( editor );
-					this.action( this.blob )
-						.then( b => {
-							if ( b ) {
-								editor.setData( '' );
-							}
-						} );
-				} else {
-					editor.setData( '' );
+				if ( editor.getData().trim() != '' ) {
+					if ( this.action ) {
+						this.buildBlob( editor );
+						this.action( this.blob )
+							.then( b => {
+								if ( b ) {
+									editor.setData( '' );
+								}
+							} );
+					} else {
+						editor.setData( '' );
+					}
 				}
 			} );
 
