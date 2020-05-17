@@ -57,7 +57,7 @@ export default class NewDocumentPlugin extends Plugin {
 			} );
 
 			editor.on( 'change:isReadOnly', () => {
-				view.set( 'isEnabled', !editor.isReadOnly );
+				view.set( 'isEnabled', !editor.isReadOnly && editor.getData().trim() != '' );
 			} );
 
 			// Callback executed once the button is clicked.
