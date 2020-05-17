@@ -51,6 +51,10 @@ export default class SaveDocumentPlugin extends Plugin {
 				isToggleable: true
 			} );
 
+			editor.model.document.on( 'change', () => {
+				view.set( 'isEnabled', !editor.isReadOnly && editor.getData().trim() != '' );
+			} );
+
 			editor.on( 'change:isReadOnly', () => {
 				view.set( 'isEnabled', !editor.isReadOnly );
 			} );
