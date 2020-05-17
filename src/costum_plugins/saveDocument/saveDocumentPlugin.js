@@ -33,7 +33,7 @@ export default class SaveDocumentPlugin extends Plugin {
 	 * @memberof SaveDocumentPlugin
 	 */
 	constructor( editor, fn = undefined ) {
-		super();
+		super( editor );
 		this.fn = fn;
 		this.editor = editor;
 	}
@@ -47,7 +47,12 @@ export default class SaveDocumentPlugin extends Plugin {
 			view.set( {
 				label: 'Save document',
 				icon: saveIcon,
-				tooltip: true
+				tooltip: true,
+				isToggleable: true
+			} );
+
+			editor.on( 'change:isReadOnly', () => {
+				view.set( 'isEnabled', !editor.isReadOnly );
 			} );
 
 			// Callback executed once the button is clicked.

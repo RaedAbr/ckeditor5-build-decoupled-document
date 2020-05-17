@@ -34,7 +34,7 @@ export default class NewDocumentPlugin extends Plugin {
 	 * @memberof NewDocumentPlugin
 	 */
 	constructor( editor, action = undefined ) {
-		super();
+		super( editor );
 		this.action = action;
 		this.editor = editor;
 	}
@@ -48,11 +48,16 @@ export default class NewDocumentPlugin extends Plugin {
 			view.set( {
 				label: 'New document',
 				icon: newIcon,
-				tooltip: true
+				tooltip: true,
+				isToggleable: true
 			} );
 
 			editor.model.document.on( 'change', () => {
-				view.set( 'isEnabled', editor.getData().trim() != '' );
+				view.set( 'isEnabled', !editor.isReadOnly && editor.getData().trim() != '' );
+			} );
+
+			editor.on( 'change:isReadOnly', () => {
+				view.set( 'isEnabled', !editor.isReadOnly );
 			} );
 
 			// Callback executed once the button is clicked.
