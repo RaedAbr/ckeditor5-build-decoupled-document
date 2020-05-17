@@ -129,9 +129,7 @@ DecoupledEditor.defaultConfig = {
 		toolbar: [
 			'imageStyle:alignLeft',
 			'imageStyle:full',
-			'imageStyle:alignRight',
-			'|',
-			'imageTextAlternative'
+			'imageStyle:alignRight'
 		]
 	},
 	table: {
