@@ -51,6 +51,10 @@ export default class NewDocumentPlugin extends Plugin {
 				tooltip: true
 			} );
 
+			editor.model.document.on( 'change', () => {
+				view.set( 'isEnabled', editor.getData().trim() != '' );
+			} );
+
 			// Callback executed once the button is clicked.
 			view.on( 'execute', () => {
 				if ( editor.getData().trim() != '' ) {
