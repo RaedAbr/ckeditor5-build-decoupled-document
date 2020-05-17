@@ -64,6 +64,15 @@
 
 			document.querySelector( '.toolbar-container' ).appendChild( editor.ui.view.toolbar.element );
 			document.querySelector( '.editable-container' ).appendChild( editor.ui.view.editable.element );
+			editor.plugins.get( 'SaveDocument' ).fn = function (blob) {
+				console.log(blob);
+				const fileDownload = document.createElement( 'a' );
+				document.body.appendChild( fileDownload );
+				fileDownload.href = window.URL.createObjectURL(blob);
+				fileDownload.download = "document.docx";
+				fileDownload.click();
+				document.body.removeChild( fileDownload );
+			}
 		} )
 		.catch( error => {
 			console.error( 'There was a problem initializing the editor.', error );

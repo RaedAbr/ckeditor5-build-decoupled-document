@@ -40,6 +40,8 @@ import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformatio
 
 // new plugins
 import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
+import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
+import SaveDocumentPlugin from './costum_plugins/save/saveDocumentPlugin';
 
 export default class DecoupledEditor extends DecoupledEditorBase {}
 
@@ -76,13 +78,18 @@ DecoupledEditor.builtinPlugins = [
 	Table,
 	TableToolbar,
 	TextTransformation,
-	Base64UploadAdapter // new plugins
+	// new plugins
+	Base64UploadAdapter,
+	ImageResize,
+	SaveDocumentPlugin
 ];
 
 // Editor configuration.
 DecoupledEditor.defaultConfig = {
 	toolbar: {
 		items: [
+			'saveDocument',
+			'|',
 			'heading',
 			'|',
 			'fontfamily',
