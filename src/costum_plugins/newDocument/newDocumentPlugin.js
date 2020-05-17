@@ -30,7 +30,7 @@ export default class NewDocumentPlugin extends Plugin {
 		} );
 	 *
 	 * @param {*} editor
-	 * @param {function(Blob) => bool} [action=undefined]
+	 * @param {function(Blob) => Promise<boolean>} [action=undefined]
 	 * @memberof NewDocumentPlugin
 	 */
 	constructor( editor, action = undefined ) {
@@ -53,12 +53,15 @@ export default class NewDocumentPlugin extends Plugin {
 
 			// Callback executed once the button is clicked.
 			view.on( 'execute', () => {
-				let confirm = true;
 				if ( this.action ) {
 					this.buildBlob( editor );
-					confirm = this.action( this.blob );
-				}
-				if ( confirm ) {
+					this.action( this.blob )
+						.then( b => {
+							if ( b ) {
+								editor.setData( '' );
+							}
+						} );
+				} else {
 					editor.setData( '' );
 				}
 			} );
