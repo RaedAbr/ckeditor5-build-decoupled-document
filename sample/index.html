@@ -71,15 +71,9 @@
 			// editor.isReadOnly = true;
 			// editor.plugins.get( 'SaveDocument' ).disableView();
 			// editor.plugins.get( 'NewDocument' ).disableView();
-			// editor.plugins.get( 'SaveDocument' ).action = function (blob) {
-			// 	console.log(blob);
-			// 	const fileDownload = document.createElement( 'a' );
-			// 	document.body.appendChild( fileDownload );
-			// 	fileDownload.href = window.URL.createObjectURL(blob);
-			// 	fileDownload.download = "document.docx";
-			// 	fileDownload.click();
-			// 	document.body.removeChild( fileDownload );
-			// }
+			editor.plugins.get( 'SaveDocument' ).action = function (blob) {
+				console.log(blob);
+			}
 			// editor.plugins.get( 'NewDocument' ).action = function (blob) {
 			// 	console.log(blob);
 			// 	const fileDownload = document.createElement( 'a' );
