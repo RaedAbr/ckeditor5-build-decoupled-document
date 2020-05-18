@@ -12,15 +12,15 @@ import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
  */
 export default class SaveDocumentPlugin extends Plugin {
 	/**
-	 * Creates an instance of SaveDocumentPlugin. If fn is not provided, the editor data will
-	 * be converted to docx file and downloaded immediatly. Otherwise, the fn function will
+	 * Creates an instance of SaveDocumentPlugin. If action is not provided, the editor data will
+	 * be converted to docx file and downloaded immediatly. Otherwise, the action function will
 	 * be executed with the editor data in form of blob as parameter.
 	 *
-	 * @example <caption>Example of use with fn function</caption>
+	 * @example <caption>Example of use with action function</caption>
 	 * DecoupledEditor.create( editorData,
 		.then( editor => {
 			...
-			editor.plugins.get( 'SaveDocument' ).fn = function (blob) {
+			editor.plugins.get( 'SaveDocument' ).action = function (blob) {
 				// you can now use the blob
 			}
 		} )
@@ -29,12 +29,12 @@ export default class SaveDocumentPlugin extends Plugin {
 		} );
 	 *
 	 * @param {*} editor
-	 * @param {function(Blob) => void} [fn=undefined]
+	 * @param {function(Blob) => void} [action=undefined]
 	 * @memberof SaveDocumentPlugin
 	 */
-	constructor( editor, fn = undefined ) {
+	constructor( editor, action = undefined ) {
 		super( editor );
-		this.fn = fn;
+		this.action = action;
 		this.editor = editor;
 	}
 
@@ -62,8 +62,8 @@ export default class SaveDocumentPlugin extends Plugin {
 			// Callback executed once the button is clicked.
 			view.on( 'execute', () => {
 				this.buildBlob( editor );
-				if ( this.fn ) {
-					this.fn( this.blob );
+				if ( this.action ) {
+					this.action( this.blob );
 				} else {
 					this.saveBlobToFile();
 				}
